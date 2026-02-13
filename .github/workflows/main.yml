@@ -14,11 +14,16 @@ jobs:
     - name: 🚚 Get latest code
       uses: actions/checkout@v4
 
+    # Add a step to build the project if needed (e.g., using Vite, React, or Vue)
+    - name: Build project
+      run: npm run build
+
     - name: 📂 Sync files with FTP
       uses: SamKirkland/FTP-Deploy-Action@v4.3.6
       with:
-        server: ftp.upload.net  # Update with your FTP server hostname
-        username: ${{ secrets.ftp_username }}  # Add username to GitHub secrets
-        password: ${{ secrets.ftp_password }}  # Add password to GitHub secrets
-        local-dir: ./dist  # Path to your local build directory
-        remote-dir: /public_html  # Adjust this to your remote directory (common is /public_html or /www)
+        server: ftp.upload.net  # FTP server
+        username: ${{ secrets.ftp_username }}  # FTP username from GitHub Secrets
+        password: ${{ secrets.ftp_password }}  # FTP password from GitHub Secrets
+        local-dir: ./dist/  # Path to your local build directory (ensure it ends with '/')
+        server-dir: /public_html  # Remote server directory where you want to deploy the files
+        # Optional, you can also specify other parameters like timeout, exclude, etc.

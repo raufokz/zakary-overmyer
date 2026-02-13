@@ -2,12 +2,13 @@ import { Section } from '@/components/Section';
 import { Card } from '@/components/Card';
 import { Button } from '@/components/Button';
 import { AnimatedSection } from '@/components/ui/AnimatedSection';
-import { Icon, GitHubIcon } from '@/components/ui/Icon';
+import { Icon } from '@/components/ui/Icon';
 import { resumeService } from '@/services/resume.service';
 
 export function ContactSection() {
   const profile = resumeService.getProfile();
 
+  // Removed GitHub from the contact methods array
   const contactMethods = [
     {
       icon: <Icon name="email" size="lg" />,
@@ -22,13 +23,6 @@ export function ContactSection() {
       value: profile.phone,
       href: `tel:${profile.phone.replace(/[^0-9+]/g, '')}`,
       description: 'For urgent matters',
-    },
-    {
-      icon: <GitHubIcon size="lg" />,
-      label: 'GitHub',
-      value: profile.github,
-      href: `https://${profile.github}`,
-      description: 'View my code & projects',
     },
     {
       icon: <Icon name="location" size="lg" />,
@@ -94,7 +88,7 @@ export function ContactSection() {
                     variant="outline"
                     size="lg"
                     className="min-w-[200px]"
-                    icon={<GitHubIcon />}
+                    icon={<Icon name="github" />}
                   >
                     View My Work
                   </Button>
@@ -105,7 +99,7 @@ export function ContactSection() {
         </AnimatedSection>
 
         {/* Contact Methods Grid */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4"> {/* Adjusted for 3 columns */}
           {contactMethods.map((method, index) => (
             <AnimatedSection key={method.label} animation="fadeInUp" delay={index * 100}>
               {method.href ? (

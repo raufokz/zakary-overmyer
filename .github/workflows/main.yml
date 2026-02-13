@@ -20,5 +20,5 @@ jobs:
         server: ftp.upload.net  # FTP server
         username: ${{ secrets.ftp_username }}  # FTP username from GitHub Secrets
         password: ${{ secrets.ftp_password }}  # FTP password from GitHub Secrets
-       
+        local-dir: dist/
         remote-dir: /public_html  # Remote server directory where you want to deploy the files

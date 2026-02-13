@@ -14,18 +14,11 @@ jobs:
     - name: 🚚 Get latest code
       uses: actions/checkout@v4
 
-    # Add a step to install dependencies and build the project
-    - name: Install dependencies
-      run: npm install
-
-    - name: Build the project
-      run: npm run build
-
     - name: 📂 Sync files with FTP
       uses: SamKirkland/FTP-Deploy-Action@v4.3.6
       with:
         server: ftp.upload.net  # FTP server
         username: ${{ secrets.ftp_username }}  # FTP username from GitHub Secrets
         password: ${{ secrets.ftp_password }}  # FTP password from GitHub Secrets
-        local-dir: ./dist/  # Path to your local build directory (ensure it ends with '/')
-        server-dir: /public_html  # Remote server directory where you want to deploy the files
+       
+        remote-dir: /public_html  # Remote server directory where you want to deploy the files

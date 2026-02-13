@@ -14,11 +14,15 @@ jobs:
     - name: 🚚 Get latest code
       uses: actions/checkout@v4
 
-    - name: 📦 Install dependencies
-      run: npm install  # Ensure dependencies are installed
+    - name: 🔧 Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '16'  # Or any other version you are using
 
-    - name: 🚀 Build project
-      run: npm run build  # Build your project (this should generate the dist/ directory)
+    - name: 📦 Install dependencies
+      run: |
+        npm install -v  # Verbose output to help diagnose issues
+        npm run build   # Ensure dist/ is built before deployment
 
     - name: 📂 Sync files with FTP
       uses: SamKirkland/FTP-Deploy-Action@v4.3.6

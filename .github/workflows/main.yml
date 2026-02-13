@@ -20,5 +20,5 @@ jobs:
         server: ftp.upload.net  # Update with your FTP server hostname
         username: ${{ secrets.ftp_username }}  # Add username to GitHub secrets
         password: ${{ secrets.ftp_password }}  # Add password to GitHub secrets
-        local-dir: ./dist/  # Path to your local build directory
+        local-dir: ./dist  # Path to your local build directory
         remote-dir: /public_html  # Adjust this to your remote directory (common is /public_html or /www)
